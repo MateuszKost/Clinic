@@ -1,65 +1,45 @@
 package clinic;
 
-import javax.persistence.Column;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 @Entity
-public class Patient {
-	
-	//adnotacje dajemy albo przy geterachm albo przy samych inicjalizacjach, wazne by wszedzie bylo jednolicie
+public class Patient {	
 
-	int Id;
-	String Name;
-	String LastName;
-	int DiseaseId;
-	
 	@Id
 	@GeneratedValue
-	public int getId() {
-		return Id;
-	}
-	
-	public String getName() {
-		return Name;
-	}
-	public void setName(String Name) {
-		this.Name = Name;
-	}
-	
-	public String getLastName() {
-		return LastName;
-	}
-	public void setLastName(String LastName) {
-		this.LastName = LastName;
-	}
-	
-	@Column(name="DiseaseId", nullable=false)
-	public int getDiseaseId() {
-		return DiseaseId;
-	}
-	public void setDiseaseId(int DiseaseId) {
-		this.DiseaseId = DiseaseId;
-	}
-	
-	Disease Disease;
-	@OneToOne
-	public Disease getDisease() {
-		return Disease;
-	}
-	public void setDisease(Disease Disease) {
-		this.Disease = Disease;
-	}
-	
-	Visit Visits;
+	int id;
+	String name;
+	String lastName;	
 	@OneToMany
-	public Visit getVisit() {
-		return Visits;
+	List<Visit> visits;
+	
+	public int getId() {
+		return id;
 	}
-	public void setVisit(Visit Visits) {
-		this.Visits = Visits;
+	public void setId(int id) {
+		this.id = id;
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public List<Visit> getVisits() {
+		return visits;
+	}
+	public void setVisits(List<Visit> visits) {
+		this.visits = visits;
+	} 
 }

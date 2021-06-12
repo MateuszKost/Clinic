@@ -1,60 +1,54 @@
 package clinic;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Visit {
 
-	int Id;
-	String DoctorName;
-	String PatientName;
-	int DiseaseId;
-	String Date; // date time of visit
-	
 	@Id
 	@GeneratedValue
+	int id;
+	String Date; // date time of visit
+	@ManyToOne
+	List<VisitDisease> visits; 
+	@ManyToOne
+	Doctor doctor;
+	@ManyToOne
+	Patient patient;
+	
 	public int getId() {
-		return Id;
+		return id;
 	}
-	
-	public String getDoctorName() {
-		return DoctorName;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public void setDoctorName(String DoctorName) {
-		this.DoctorName = DoctorName;
-	}
-	
-	public String getPatientName() {
-		return PatientName;
-	}
-	public void setPatientName(String PatientName) {
-		this.PatientName = PatientName;
-	}
-	
-	public int getDiseaseId() {
-		return DiseaseId;
-	}
-	public void setDiseaseId(int DiseaseId) {
-		this.DiseaseId = DiseaseId;
-	}
-	
 	public String getDate() {
 		return Date;
 	}
-	public void setDate(String Date) {
-		this.Date = Date;
+	public void setDate(String date) {
+		Date = date;
 	}
-	
-	Disease Disease;
-	@ManyToMany
-	public Disease getDisease() {
-		return Disease;
+	public List<VisitDisease> getVisits() {
+		return visits;
 	}
-	public void setDisease(Disease Disease) {
-		this.Disease = Disease;
+	public void setVisits(List<VisitDisease> visits) {
+		this.visits = visits;
+	}
+	public Doctor getDoctor() {
+		return doctor;
+	}
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
+	public Patient getPatient() {
+		return patient;
+	}
+	public void setPatient(Patient patient) {
+		this.patient = patient;
 	}
 }
