@@ -1,5 +1,6 @@
 package polsl.clinic.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,17 +11,27 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
-public class Visit {
+public class Visit implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
 	int id;
+	
 	String Date; // date time of visit
+	
 	@OneToMany(mappedBy="visit",fetch=FetchType.EAGER)
 	List<VisitDisease> visits = new ArrayList<VisitDisease>();
+	
 	@ManyToOne(fetch=FetchType.EAGER)
 	Doctor doctor;
+	
 	@ManyToOne(fetch=FetchType.EAGER)
 	Patient patient;
 		
@@ -48,12 +59,18 @@ public class Visit {
 	public void setVisits(List<VisitDisease> visits) {
 		this.visits = visits;
 	}
+	
+	@JsonManagedReference(value = "doctor-visit")
+	@JsonIgnore
 	public Doctor getDoctor() {
 		return doctor;
 	}
 	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
 	}
+	
+	@JsonBackReference(value = "patient-visit")
+	@JsonIgnore
 	public Patient getPatient() {
 		return patient;
 	}
