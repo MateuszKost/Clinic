@@ -1,20 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { DataManagerService, Patient } from '../data-manager.service';
 
-export interface PeriodicElement {
-  id: number;
-  name: string;
-  surname: string;
-}
 
-const DATA: PeriodicElement[] = [
-  { id: 1, name: 'Andrzej', surname: 'Jaworek' },
-  { id: 2, name: 'Zbigniew', surname: 'Stonoga' },
-  { id: 3, name: 'Mareczek', surname: 'Heheczek' },
-  { id: 4, name: 'Mateusz', surname: 'Szary' },
-  { id: 5, name: 'Jas', surname: 'Fasola' },
-  { id: 6, name: 'Anielka', surname: 'Mirabelka' },
-
+const DATA: Patient[] = [
+  { id: 1, name: 'Andrzej', lastName: 'Jaworek' },
 ];
 
 @Component({
@@ -24,12 +14,13 @@ const DATA: PeriodicElement[] = [
 })
 export class PatientComponent implements OnInit {
 
-  displayedColumns: string[] = ['demo-id', 'demo-name', 'demo-surname'];
+  displayedColumns: string[] = ['demo-id', 'demo-name', 'demo-lastName'];
   title = 'clinic';
   dataSource = DATA;
 
-  constructor(private http: HttpClient) {
-
+  constructor(private http: HttpClient,
+    private dataManagerService: DataManagerService) {
+      this.dataSource = dataManagerService.patients
   }
 
   ngOnInit(): void {
@@ -37,9 +28,7 @@ export class PatientComponent implements OnInit {
   }
 
   onClick = () => {
-    console.log("test button clicked")
-    const response = this.http.get("http://localhost:8080/clinic/patients", { responseType: 'json' }).subscribe((res) => console.log(res))
-    console.log(response)
+
   }
 
   onRowClicked = (id: Number) => {

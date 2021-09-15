@@ -9,7 +9,6 @@ import { MatTableModule } from '@angular/material/table';
 import { PatientComponent } from './patient/patient.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { VisitComponent } from './visit/visit.component';
-import { DataManagerService } from './data-manager.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +24,7 @@ import { DataManagerService } from './data-manager.service';
     BrowserAnimationsModule,
     MatTableModule 
   ],
-  providers: [DataManagerService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
