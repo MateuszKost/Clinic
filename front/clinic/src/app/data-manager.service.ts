@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 
 
 export interface Patient {
@@ -30,7 +30,8 @@ export class DataManagerService {
 
   patients: Patient[] = []
   doctors: Doctor[] = []
-
+  visits: Visit[] = []
+  visitsEmiter: EventEmitter<any> = new EventEmitter();
   constructor(
     private http: HttpClient) {
     this.getAllPatients()
@@ -38,22 +39,22 @@ export class DataManagerService {
 
   getAllPatients = () => {
     const visits1 = [
-      { id: 10, doctorId: 100, patientId: 1, date: "12.10.2137" },
-      { id: 10, doctorId: 100, patientId: 1, date: "12.10.2137" },
-      { id: 10, doctorId: 100, patientId: 1, date: "12.10.2137" },
-      { id: 10, doctorId: 100, patientId: 1, date: "12.10.2137" }]
+      { id: 10, doctorId: 1400, patientId: 1, date: "12.10.2137" },
+      { id: 20, doctorId: 2700, patientId: 1, date: "12.10.2137" },
+      { id: 30, doctorId: 30240, patientId: 1, date: "12.10.2137" },
+      { id: 40, doctorId: 41200, patientId: 1, date: "12.10.2137" }]
 
     const visits2 = [
-      { id: 10, doctorId: 100, patientId: 1, date: "12.10.2137" },
-      { id: 10, doctorId: 100, patientId: 1, date: "12.10.2137" },
-      { id: 10, doctorId: 100, patientId: 1, date: "12.10.2137" },
-      { id: 10, doctorId: 100, patientId: 1, date: "12.10.2137" }]
+      { id: 10, doctorId: 10313210, patientId: 1, date: "12.10.2137" },
+      { id: 10, doctorId: 1321132100, patientId: 1, date: "12.10.2137" },
+      { id: 10, doctorId: 12, patientId: 1, date: "12.10.2137" },
+      { id: 10, doctorId: 1100, patientId: 1, date: "12.10.2137" }]
 
     const visits3 = [
-      { id: 10, doctorId: 100, patientId: 1, date: "12.10.2137" },
-      { id: 10, doctorId: 100, patientId: 1, date: "12.10.2137" },
-      { id: 10, doctorId: 100, patientId: 1, date: "12.10.2137" },
-      { id: 10, doctorId: 100, patientId: 1, date: "12.10.2137" }]
+      { id: 14450, doctorId: 13112300, patientId: 11, date: "12.10.2137" },
+      { id: 312, doctorId: 131200, patientId: 131, date: "12.10.2137" },
+      { id: 10, doctorId: 15100, patientId: 12, date: "12.10.2137" },
+      { id: 1510, doctorId: 16600, patientId: 3211, date: "12.10.2137" }]
 
     const doctors = [
       { id: 1, lastName: "Gołek", name: "Brandon", visits: visits1 },

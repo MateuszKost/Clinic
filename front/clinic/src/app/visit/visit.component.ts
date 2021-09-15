@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { DataManagerService, Visit } from '../data-manager.service';
 
 @Component({
@@ -7,19 +7,19 @@ import { DataManagerService, Visit } from '../data-manager.service';
   templateUrl: './visit.component.html',
   styleUrls: ['./visit.component.css']
 })
-export class VisitComponent implements OnInit {
+export class VisitComponent {
 
   displayedColumns: string[] = ['demo-id', 'demo-doctorId', 'demo-patientId', 'demo-date'];
   title = 'clinic';
   dataSource: Visit[] = [];
-  currentVisit: Visit = { id: 0, doctorId: 0, patientId: 0, date: "no date" }
+  currentVisit: Visit = { id: 0, doctorId: 0, patientId: 0, date: "no chosen visit" }
 
   constructor(private http: HttpClient,
     private dataManagerService: DataManagerService) {
-  }
 
-  ngOnInit(): void {
-    // this.dataSource = this.dataManagerService.patients
+    this.dataManagerService.visitsEmiter.subscribe((emittedVisits)=>{
+      this.dataSource = emittedVisits
+    })
   }
 
   onAdd = () => {
@@ -35,9 +35,9 @@ export class VisitComponent implements OnInit {
   }
 
   onRowClicked = (id: Number) => {
-    this.dataSource.forEach((patient) => {
-      if (patient.id == id)
-        this.currentVisit = patient
+    this.dataSource.forEach((visit) => {
+      if (visit.id == id)
+        this.currentVisit = visit
     })
   }
 

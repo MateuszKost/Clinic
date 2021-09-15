@@ -35,10 +35,12 @@ export class DoctorComponent implements OnInit {
   }
 
   onRowClicked = (id: Number) => {
-    this.dataSource.forEach((patient)=>{
-      if(patient.id == id)
-        this.currentDoctor=patient
+    this.dataSource.forEach((doctor)=>{
+      if(doctor.id == id)
+        this.currentDoctor=doctor
     })
+    
+    this.dataManagerService.visitsEmiter.emit(this.currentDoctor.visits)
   }
 }
 

@@ -40,5 +40,7 @@ export class PatientComponent implements OnInit {
       if(patient.id == id)
         this.currentPatient=patient
     })
+
+    this.dataManagerService.visitsEmiter.emit(this.currentPatient.visits)
   }
 }
