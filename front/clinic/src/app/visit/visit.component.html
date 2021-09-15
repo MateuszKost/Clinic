@@ -1,1 +1,73 @@
-<p>visit works!</p>
+<h2>Visits</h2>
+<hr>
+<div class="row">
+    <div class="col-2">
+        <div class="form-group">
+            <label for="doctorId">Doctor ID</label>
+            <input class="form-control" id="doctorId" type="text" formControlName="doctorId">
+        </div>
+        <div class="form-group">
+            <label for="patientId">Patient ID</label>
+            <input class="form-control" id="patientId" type="text" formControlName="patientId">
+        </div>
+        <button class="btn btn-success text-white" (click)="onAdd()">add</button>
+    </div>
+    <div class="col-2">
+        <div class="form-group">
+            <label for="doctorId">Doctor ID</label>
+            <input class="form-control" id="doctorId" type="text" formControlName="doctorId" value={{currentVisit.doctorId}}>
+        </div>
+        <div class="form-group">
+            <label for="patientId">Patient ID</label>
+            <input class="form-control" id="patientId" type="text" formControlName="patientId" value={{currentVisit.patientId}}>
+        </div>
+        <div class="form-group">
+            <label for="date">Date</label>
+            <input [disabled]=true class="form-control" id="date" type="text" formControlName="date" value={{currentVisit.date}}>
+        </div>
+        <button class="btn btn-info text-white" (click)="onUpdate()">update</button>
+    </div>
+    <div class="col-2">
+        <div class="form-group">
+            <label for="doctorId">Doctor ID</label>
+            <input [disabled]=true class="form-control" id="doctorId" type="text" formControlName="doctorId" value={{currentVisit.doctorId}}>
+        </div>
+        <div class="form-group">
+            <label for="patientId">Patient ID</label>
+            <input [disabled]=true class="form-control" id="patientId" type="text" formControlName="patientId" value={{currentVisit.patientId}}>
+        </div>
+        <div class="form-group">
+            <label for="date">Date</label>
+            <input [disabled]=true class="form-control" id="date" type="text" formControlName="date" value={{currentVisit.date}}>
+        </div>
+        <button class="btn btn-danger text-white" (click)="onDelete()">Delete</button>
+    </div>
+    <div class="col-6">
+        <div>
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+
+                <ng-container matColumnDef="demo-id">
+                    <th mat-header-cell *matHeaderCellDef> ID </th>
+                    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                </ng-container> 
+
+                <ng-container matColumnDef="demo-doctorId">
+                    <th mat-header-cell *matHeaderCellDef> DOCTOR ID </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="demo-patientId">
+                    <th mat-header-cell *matHeaderCellDef> PATIENT ID </th>
+                    <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="demo-date">
+                    <th mat-header-cell *matHeaderCellDef> DATE </th>
+                    <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row (click)="onRowClicked(row.id)" *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </div>
+</div>

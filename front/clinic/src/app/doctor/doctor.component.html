@@ -1,1 +1,61 @@
-<p>doctor works!</p>
+<h2>Doctors</h2>
+<hr>
+<div class="row">
+    <div class="col-2">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" id="name" type="text" formControlName="name">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input class="form-control" id="lastName" type="text" formControlName="lastName">
+        </div>
+        <button class="btn btn-success text-white" (click)="onAdd()">add</button>
+    </div>
+    <div class="col-2">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" id="name" type="text" formControlName="name" value={{currentDoctor.name}}>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input class="form-control" id="lastName" type="text" formControlName="lastName" value={{currentDoctor.lastName}}>
+        </div>
+        <button class="btn btn-info text-white" (click)="onUpdate()">update</button>
+    </div>
+    <div class="col-2">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input [disabled]=true class="form-control" id="name" type="text" formControlName="name" value={{currentDoctor.name}}>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input [disabled]=true class="form-control" id="lastName" type="text" formControlName="lastName" value={{currentDoctor.lastName}}>
+        </div>
+        <button class="btn btn-danger text-white" (click)="onDelete()">delete</button>
+    </div>
+    <div class="col-6">
+        <div>
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+
+                <ng-container matColumnDef="demo-id">
+                    <th mat-header-cell *matHeaderCellDef> ID </th>
+                    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                </ng-container> 
+
+                <ng-container matColumnDef="demo-name">
+                    <th mat-header-cell *matHeaderCellDef> NAME </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="demo-lastName">
+                    <th mat-header-cell *matHeaderCellDef> LAST NAME </th>
+                    <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row (click)="onRowClicked(row.id)" *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </div>
+</div>

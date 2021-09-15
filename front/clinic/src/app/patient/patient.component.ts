@@ -13,15 +13,14 @@ export class PatientComponent implements OnInit {
   displayedColumns: string[] = ['demo-id', 'demo-name', 'demo-lastName'];
   title = 'clinic';
   dataSource: Patient[] = [];
-  currentPatient: Patient = {id: 0, name: "", lastName: ""}
+  currentPatient: Patient = {id: 0, name: "", lastName: "", visits: []}
 
   constructor(private http: HttpClient,
     private dataManagerService: DataManagerService) {
-      this.dataSource = dataManagerService.patients
   }
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.dataSource = this.dataManagerService.patients
   }
 
   onAdd = () => {
