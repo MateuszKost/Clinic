@@ -14,7 +14,7 @@
     </div>
     <div class="col-2">
         <div class="form-group">
-            <input [disabled]=true class="form-control" id="id" type="text" formControlName="id"
+            <input hidden [disabled]=true class="form-control" id="id" type="text" formControlName="id"
                 value={{currentPatient.id}} #updateId>
         </div>
         <div class="form-group">
@@ -30,7 +30,7 @@
     </div>
     <div class="col-2">
         <div class="form-group">
-            <input [disabled]=true class="form-control" id="id" type="text" formControlName="id"
+            <input hidden [disabled]=true class="form-control" id="id" type="text" formControlName="id"
                 value={{currentPatient.id}} #deleteId>
         </div>
         <div class="form-group">

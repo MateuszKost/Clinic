@@ -4,43 +4,55 @@
     <div class="col-2">
         <div class="form-group">
             <label for="doctorId">Doctor ID</label>
-            <input class="form-control" id="doctorId" type="text" formControlName="doctorId">
+            <input class="form-control" id="doctorId" type="text" formControlName="doctorId" #addDoctorId>
         </div>
         <div class="form-group">
             <label for="patientId">Patient ID</label>
-            <input class="form-control" id="patientId" type="text" formControlName="patientId">
+            <input class="form-control" id="patientId" type="text" formControlName="patientId" #addPatientId>
         </div>
-        <button class="btn btn-success text-white" (click)="onAdd()">add</button>
+        <button class="btn btn-success text-white" (click)="onAdd(addDoctorId.value, addPatientId.value)">add</button>
     </div>
     <div class="col-2">
         <div class="form-group">
+            <input hidden class="form-control" id="id" type="text" formControlName="id" value={{currentVisit.id}} #updateId>
+        </div>
+        <div class="form-group">
             <label for="doctorId">Doctor ID</label>
-            <input class="form-control" id="doctorId" type="text" formControlName="doctorId">
+            <input class="form-control" id="doctorId" type="text" formControlName="doctorId" #updateDoctorId>
         </div>
         <div class="form-group">
             <label for="patientId">Patient ID</label>
-            <input class="form-control" id="patientId" type="text" formControlName="patientId">
+            <input class="form-control" id="patientId" type="text" formControlName="patientId" #updatePatientId>
         </div>
         <div class="form-group">
             <label for="date">Date</label>
-            <input [disabled]=true class="form-control" id="date" type="text" formControlName="date">
+            <input [disabled]=true class="form-control" id="date" type="text" formControlName="date"
+                value={{currentVisit.date}} #updateDate>
         </div>
-        <button class="btn btn-info text-white" (click)="onUpdate()">update</button>
+        <button class="btn btn-info text-white"
+            (click)="onUpdate(updateId.value, updateDoctorId.value, updatePatientId.value, updateDate.value)">update</button>
     </div>
     <div class="col-2">
         <div class="form-group">
+            <input hidden class="form-control" id="id" type="text" formControlName="id" value={{currentVisit.id}} #deleteId>
+        </div>
+        <div class="form-group">
             <label for="doctorId">Doctor ID</label>
-            <input [disabled]=true class="form-control" id="doctorId" type="text" formControlName="doctorId" value='{{currentVisit.doctorId > 0 ? currentVisit.doctorId : ""}}'>
+            <input [disabled]=true class="form-control" id="doctorId" type="text" formControlName="doctorId"
+                value='{{currentVisit.doctorId > 0 ? currentVisit.doctorId : ""}}' #deleteDoctorId>
         </div>
         <div class="form-group">
             <label for="patientId">Patient ID</label>
-            <input [disabled]=true class="form-control" id="patientId" type="text" formControlName="patientId" value='{{currentVisit.patientId > 0 ? currentVisit.patientId : ""}}'>
+            <input [disabled]=true class="form-control" id="patientId" type="text" formControlName="patientId"
+                value='{{currentVisit.patientId > 0 ? currentVisit.patientId : ""}}' #deletePatientId>
         </div>
         <div class="form-group">
             <label for="date">Date</label>
-            <input [disabled]=true class="form-control" id="date" type="text" formControlName="date" value={{currentVisit.date}}>
+            <input [disabled]=true class="form-control" id="date" type="text" formControlName="date"
+                value={{currentVisit.date}} #deleteDate>
         </div>
-        <button class="btn btn-danger text-white" (click)="onDelete()">Delete</button>
+        <button class="btn btn-danger text-white"
+            (click)="onDelete(deleteId.value, deleteDoctorId.value, deletePatientId.value, deleteDate.value)">Delete</button>
     </div>
     <div class="col-6">
         <div>
@@ -49,7 +61,7 @@
                 <ng-container matColumnDef="demo-id">
                     <th mat-header-cell *matHeaderCellDef> ID </th>
                     <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-                </ng-container> 
+                </ng-container>
 
                 <ng-container matColumnDef="demo-doctorId">
                     <th mat-header-cell *matHeaderCellDef> DOCTOR ID </th>

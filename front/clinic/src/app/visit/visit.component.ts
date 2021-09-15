@@ -17,21 +17,28 @@ export class VisitComponent {
   constructor(private http: HttpClient,
     private dataManagerService: DataManagerService) {
 
-    this.dataManagerService.visitsEmiter.subscribe((emittedVisits)=>{
+    this.dataManagerService.visitsEmiter.subscribe((emittedVisits) => {
       this.dataSource = emittedVisits
     })
   }
 
-  onAdd = () => {
-
+  onAdd = (doctorId: string, patientId: string) => {
+    console.log(doctorId)
+    console.log(patientId)
   }
 
-  onDelete = () => {
-
+  onDelete = (id: string, doctorId: string, patientId: string, date: string) => {
+    console.log(patientId)
+    console.log(doctorId)
+    console.log(id)
+    console.log(date)
   }
 
-  onUpdate = () => {
-
+  onUpdate = (id: string, doctorId: string, patientId: string, date: string) => {
+    console.log(patientId)
+    console.log(doctorId)
+    console.log(id)
+    console.log(date)
   }
 
   onRowClicked = (id: Number) => {
