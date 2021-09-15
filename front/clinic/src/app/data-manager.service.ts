@@ -31,7 +31,9 @@ export class DataManagerService {
   patients: Patient[] = []
   doctors: Doctor[] = []
   visits: Visit[] = []
+  currentTable = "none"
   visitsEmiter: EventEmitter<any> = new EventEmitter();
+  tableDetectorEmiter: EventEmitter<any> = new EventEmitter();
   constructor(
     private http: HttpClient) {
     this.getAllPatients()

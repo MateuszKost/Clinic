@@ -15,7 +15,12 @@ export class DoctorComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private dataManagerService: DataManagerService) {
+    this.dataManagerService.tableDetectorEmiter.subscribe((currentTable)=>{
+      this.dataManagerService.currentTable=currentTable
 
+      if(currentTable == "patient")
+      this.currentDoctor = { id: 0, name: "", lastName: "", visits: [] }
+    })
   }
 
   ngOnInit(): void {
@@ -44,7 +49,7 @@ export class DoctorComponent implements OnInit {
       if (doctor.id == id)
         this.currentDoctor = doctor
     })
-
+    this.dataManagerService.tableDetectorEmiter.emit("doctor")
     this.dataManagerService.visitsEmiter.emit(this.currentDoctor.visits)
   }
 }
