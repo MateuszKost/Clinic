@@ -38,7 +38,7 @@ export class PatientComponent implements OnInit {
 
   onClick = () => {
     console.log("test button clicked")
-    const response = this.http.get("http://localhost:8080/clinic/test/123", { responseType: 'json' }).subscribe((res) => console.log(res))
+    const response = this.http.get("http://localhost:8080/clinic/patients", { responseType: 'json' }).subscribe((res) => console.log(res))
     console.log(response)
   }
 
