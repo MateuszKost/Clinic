@@ -28,8 +28,8 @@ export interface Visit {
 })
 export class DataManagerService {
 
-  patients: Patient[] = []
-  doctors: Doctor[] = []
+  //patients: Patient[] = []
+  //doctors: Doctor[] = []
   visits: Visit[] = []
   currentTable = "none"
   visitsEmiter: EventEmitter<any> = new EventEmitter();
@@ -69,9 +69,15 @@ export class DataManagerService {
       { id: 2, lastName: "Nowak", name: "Zbigniew", visits: visits2 },
       { id: 3, lastName: "Biedny", name: "Jan", visits: visits3 }]
 
-    this.patients = response
-    this.doctors = doctors
+    //this.patients = response
+    //this.doctors = doctors
+    console.log(response)
+    return this.http.get("http://localhost:8080/take/patients", { responseType: 'json' })
+     
+    //this.http.get("http://localhost:8080/clinic/patients", { responseType: 'json' }).subscribe((res) => console.log(res))
   }
 
-
+  getAllDoctors = ()=>{
+    return this.http.get("http://localhost:8080/take/doctors", { responseType: 'json' })
+  }
 }
