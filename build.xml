@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<project name="clinic" default="deploy">
+<project name="take" default="deploy">
 	<property name="jboss.home" value="c:/take/wildfly-10.1.0.Final" />
 
 	<path id="compile.classpath">
