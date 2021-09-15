@@ -13,7 +13,7 @@ export class PatientComponent implements OnInit {
   displayedColumns: string[] = ['demo-id', 'demo-name', 'demo-lastName'];
   title = 'clinic';
   dataSource: Patient[] = [];
-  currentPatient: Patient = {id: 0, name: "", lastName: "", visits: []}
+  currentPatient: Patient = { id: 0, name: "", lastName: "", visits: [] }
 
   constructor(private http: HttpClient,
     private dataManagerService: DataManagerService) {
@@ -23,22 +23,22 @@ export class PatientComponent implements OnInit {
     this.dataSource = this.dataManagerService.patients
   }
 
-  onAdd = () => {
+  onAdd = (lastName: string, name: string) => {
 
   }
 
-  onDelete = () => {
+  onDelete = (id: string, lastName: string, name: string) => {
 
   }
 
-  onUpdate = () => {
+  onUpdate = (id: string, lastName: string, name: string) => {
 
   }
 
   onRowClicked = (id: Number) => {
-    this.dataSource.forEach((patient)=>{
-      if(patient.id == id)
-        this.currentPatient=patient
+    this.dataSource.forEach((patient) => {
+      if (patient.id == id)
+        this.currentPatient = patient
     })
 
     this.dataManagerService.visitsEmiter.emit(this.currentPatient.visits)

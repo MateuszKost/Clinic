@@ -12,7 +12,7 @@ export class VisitComponent {
   displayedColumns: string[] = ['demo-id', 'demo-doctorId', 'demo-patientId', 'demo-date'];
   title = 'clinic';
   dataSource: Visit[] = [];
-  currentVisit: Visit = { id: 0, doctorId: 0, patientId: 0, date: "no chosen visit" }
+  currentVisit: Visit = { id: 0, doctorId: 0, patientId: 0, date: "" }
 
   constructor(private http: HttpClient,
     private dataManagerService: DataManagerService) {

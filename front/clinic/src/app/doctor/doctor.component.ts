@@ -11,7 +11,7 @@ export class DoctorComponent implements OnInit {
   displayedColumns: string[] = ['demo-id', 'demo-name', 'demo-lastName'];
   title = 'clinic';
   dataSource: Doctor[] = [];
-  currentDoctor: Doctor = {id: 0, name: "", lastName: "", visits: []}
+  currentDoctor: Doctor = { id: 0, name: "", lastName: "", visits: [] }
 
   constructor(private http: HttpClient,
     private dataManagerService: DataManagerService) {
@@ -22,24 +22,24 @@ export class DoctorComponent implements OnInit {
     this.dataSource = this.dataManagerService.doctors
   }
 
-  onAdd = () => {
+  onAdd = (lastName: string, name: string) => {
 
   }
 
-  onDelete = () => {
+  onDelete = (id: string, lastName: string, name: string) => {
 
   }
 
-  onUpdate = () => {
+  onUpdate = (id: string, lastName: string, name: string) => {
 
   }
 
   onRowClicked = (id: Number) => {
-    this.dataSource.forEach((doctor)=>{
-      if(doctor.id == id)
-        this.currentDoctor=doctor
+    this.dataSource.forEach((doctor) => {
+      if (doctor.id == id)
+        this.currentDoctor = doctor
     })
-    
+
     this.dataManagerService.visitsEmiter.emit(this.currentDoctor.visits)
   }
 }
