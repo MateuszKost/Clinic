@@ -37,8 +37,10 @@ public class Visit implements Serializable {
 		
 	public Visit(){}
 	
-	public Visit(String _date){
+	public Visit(String _date, Patient _patient, Doctor _doctor){
 		this.Date = _date;
+		this.doctor = _doctor;
+		this.patient = _patient;
 	}
 	
 	public int getId() {
@@ -53,6 +55,8 @@ public class Visit implements Serializable {
 	public void setDate(String date) {
 		Date = date;
 	}
+	
+	@JsonIgnore
 	public List<VisitDisease> getVisits() {
 		return visits;
 	}

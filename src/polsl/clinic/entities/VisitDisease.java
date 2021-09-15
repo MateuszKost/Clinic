@@ -19,6 +19,13 @@ public class VisitDisease {
 	@ManyToOne(fetch=FetchType.LAZY)
 	Disease disease;
 	
+	public VisitDisease(){}
+	
+	public VisitDisease(Visit _visit, Disease _disease){
+		this.disease = _disease;
+		this.visit = _visit;
+	}
+	
 	public int getId() {
 		return id;
 	}

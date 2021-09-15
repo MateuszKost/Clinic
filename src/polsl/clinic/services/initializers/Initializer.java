@@ -51,7 +51,7 @@ public class Initializer {
 				this.doctorList = this.doctorInitializerService.init();
 				this.visitList = this.visitInitializerService.init(patientList, doctorList);
 				this.diseaseList = this.diseaseInitializerService.init();
-				//this.visitDiseaseList = this.visitDiseaseInitalizerService.init(diseaseList, visitList);
+				this.visitDiseaseList = this.visitDiseaseInitalizerService.init(diseaseList, visitList);
 				return "Data initialized";
 			}
 			return "Data exists! - Restart server to reinit";
