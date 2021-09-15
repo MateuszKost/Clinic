@@ -29,24 +29,25 @@ export class PatientComponent implements OnInit {
     this.dataManagerService.getAllPatients()
       .subscribe((response) => {
         this.dataSource = <Patient[]>response
+        console.log(this.dataSource)
       })
   }
 
   onAdd = (lastName: string, name: string) => {
-    console.log(lastName)
-    console.log(name)
+
+    this.dataManagerService.addPatient(lastName, name)
+
+    this.dataManagerService.getAllPatients().subscribe((response)=>{
+      this.dataSource = <any>response
+    })
   }
 
   onDelete = (id: string, lastName: string, name: string) => {
-    console.log(id)
-    console.log(lastName)
-    console.log(name)
+  
   }
 
   onUpdate = (id: string, lastName: string, name: string) => {
-    console.log(id)
-    console.log(lastName)
-    console.log(name)
+  
   }
 
   onRowClicked = (id: Number) => {

@@ -27,6 +27,7 @@ export class DoctorComponent implements OnInit {
     this.dataManagerService.getAllDoctors()
     .subscribe((response) => {
       this.dataSource = <Doctor[]>response
+      console.log(this.dataSource)
     })
   }
 
