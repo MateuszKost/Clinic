@@ -3,10 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { DataManagerService, Patient } from '../data-manager.service';
 
 
-const DATA: Patient[] = [
-  { id: 1, name: 'Andrzej', lastName: 'Jaworek' },
-];
-
 @Component({
   selector: 'app-patient',
   templateUrl: './patient.component.html',
@@ -16,7 +12,8 @@ export class PatientComponent implements OnInit {
 
   displayedColumns: string[] = ['demo-id', 'demo-name', 'demo-lastName'];
   title = 'clinic';
-  dataSource = DATA;
+  dataSource: Patient[] = [];
+  currentPatient: Patient = {id: 0, name: "", lastName: ""}
 
   constructor(private http: HttpClient,
     private dataManagerService: DataManagerService) {
@@ -27,11 +24,22 @@ export class PatientComponent implements OnInit {
     throw new Error('Method not implemented.');
   }
 
-  onClick = () => {
+  onAdd = () => {
+
+  }
+
+  onDelete = () => {
+
+  }
+
+  onUpdate = () => {
 
   }
 
   onRowClicked = (id: Number) => {
-    console.log(id)
+    this.dataSource.forEach((patient)=>{
+      if(patient.id == id)
+        this.currentPatient=patient
+    })
   }
 }

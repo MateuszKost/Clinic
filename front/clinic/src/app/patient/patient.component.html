@@ -10,37 +10,37 @@
             <label for="lastName">Last Name</label>
             <input class="form-control" id="lastName" type="text" formControlName="lastName">
         </div>
-        <button class="btn btn-success text-white" (click)="onClick()">add</button>
+        <button class="btn btn-success text-white" (click)="onAdd()">add</button>
     </div>
     <div class="col-2">
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="id">ID</label>
-            <input class="form-control" id="id" type="number" formControlName="id">
-        </div>
+            <input [disabled]=true class="form-control" id="id" type="number" formControlName="id" value={{currentPatient.id}}>
+        </div> -->
         <div class="form-group">
             <label for="name">Name</label>
-            <input class="form-control" id="name" type="text" formControlName="name">
+            <input class="form-control" id="name" type="text" formControlName="name" value={{currentPatient.name}}>
         </div>
         <div class="form-group">
             <label for="lastName">Last Name</label>
-            <input class="form-control" id="lastName" type="text" formControlName="lastName">
+            <input class="form-control" id="lastName" type="text" formControlName="lastName" value={{currentPatient.lastName}}>
         </div>
-        <button class="btn btn-info text-white">update</button>
+        <button class="btn btn-info text-white" (click)="onUpdate()">update</button>
     </div>
     <div class="col-2">
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label for="id">ID</label>
-            <input class="form-control" id="id" type="number" formControlName="id">
-        </div>
+            <input [disabled]=true class="form-control" id="id" type="number" formControlName="id" value={{currentPatient.id}}>
+        </div> -->
         <div class="form-group">
             <label for="name">Name</label>
-            <input class="form-control" id="name" type="text" formControlName="name">
+            <input [disabled]=true class="form-control" id="name" type="text" formControlName="name" value={{currentPatient.name}}>
         </div>
         <div class="form-group">
             <label for="lastName">Last Name</label>
-            <input class="form-control" id="lastName" type="text" formControlName="lastName">
+            <input [disabled]=true class="form-control" id="lastName" type="text" formControlName="lastName" value={{currentPatient.lastName}}>
         </div>
-        <button class="btn btn-danger text-white">delete</button>
+        <button class="btn btn-danger text-white" (click)="onDelete()">delete</button>
     </div>
     <div class="col-6">
         <div>
