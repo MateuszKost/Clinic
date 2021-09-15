@@ -18,21 +18,15 @@ public class VisitDiseaseInitalizerService {
 	@PersistenceContext(name="visitdisease") 
 	EntityManager manager;
 	
-	List<VisitDisease> visitDiseases = new ArrayList<VisitDisease>();
-		
+	List<VisitDisease> visitDiseases = new ArrayList<VisitDisease>();			
+	
 	
 	@SuppressWarnings("unchecked")
 	public List<VisitDisease> init(List<Disease> diseases, List<Visit> visits) {
 		for (Disease disease: diseases) {
 			for (Visit visit: visits) {
-				VisitDisease visitDisease = new VisitDisease();
-				visitDisease.setVisit(visit);
-				visitDisease.setDisease(disease);
-				visitDiseases.add(visitDisease);
+				manager.persist(new VisitDisease(visit, disease));
 			}
-		}
-		for(VisitDisease visitDisease : visitDiseases){
-			manager.persist(visitDisease);
 		}
 		
 		Query query = manager.createQuery("SELECT v FROM VisitDisease v");

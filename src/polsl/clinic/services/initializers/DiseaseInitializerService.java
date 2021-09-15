@@ -22,8 +22,7 @@ public class DiseaseInitializerService {
 		this.diseases.add(new Disease("Covid"));
 		this.diseases.add(new Disease("Rozyczka"));
 		this.diseases.add(new Disease("Tulipan"));
-	}
-		
+	}	
 	
 	@SuppressWarnings("unchecked")
 	public List<Disease> init() {
@@ -31,7 +30,7 @@ public class DiseaseInitializerService {
 		for (Disease disease: diseases) {
 			manager.persist(disease);
 		}
-		Query query = manager.createQuery("SELECT d FROM Doctor d");
+		Query query = manager.createQuery("SELECT d FROM Disease d");
 		this.diseases = query.getResultList();
 		return this.diseases;
 	}
