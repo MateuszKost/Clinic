@@ -57,10 +57,9 @@ public class PatientsController {
 	}
 	
 	@POST
-	@Path("/add")
-	public Response addPatient(){
+	public Response addPatient(Patient patient){
 		
-		patientsService.add(new Patient());
+		patientsService.add(patient);
 		return Response
 				.status(200)
 				.header("Access-Control-Allow-Origin", "*")
