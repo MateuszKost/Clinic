@@ -46,19 +46,18 @@ export class DataManagerService {
 
   addPatient = (patient: Patient) => {
     const headers = { 'content-type': 'application/json'}
-    return this.http.post<Patient>("http://localhost:8080/take/patients", patient, { headers: headers }).subscribe(result => { console.log("Posted" + JSON.stringify(result));})
-    
+    return this.http.post<Patient>("http://localhost:8080/take/patients", patient, { headers: headers })
   }
 
   deletePatient = (id: number) => {
     const headers = { 'content-type': 'application/json'}
-    return this.http.delete("http://localhost:8080/take/patients/" + id, { headers: headers }).subscribe()
+    return this.http.delete("http://localhost:8080/take/patients/" + id, { headers: headers })
   }
 
   updatePatient = (id: number, name: string, lastName: string) => {
     const patient: Patient = { id: id, name: name, lastName: lastName, visits: [] }
     const headers = { 'content-type': 'application/json'}
-    return this.http.put<Patient>("http://localhost:8080/take/patients/" + id, patient, { headers: headers }).subscribe()
+    return this.http.put<Patient>("http://localhost:8080/take/patients/" + id, patient, { headers: headers })
   }
 
   // DOCTORS
@@ -69,18 +68,17 @@ export class DataManagerService {
 
   addDoctor = (doctor: Doctor) => {
     const headers = { 'content-type': 'application/json'}
-    return this.http.post<Doctor>("http://localhost:8080/take/doctors", doctor, { headers: headers }).subscribe(result => { console.log("Posted" + JSON.stringify(result));})
-    
+    return this.http.post<Doctor>("http://localhost:8080/take/doctors", doctor, { headers: headers })
   }
 
   deleteDoctor = (id: number) => {
     const headers = { 'content-type': 'application/json'}
-    return this.http.delete("http://localhost:8080/take/doctors/" + id, { headers: headers }).subscribe()
+    return this.http.delete("http://localhost:8080/take/doctors/" + id, { headers: headers })
   }
 
   updateDoctor = (id: number, name: string, lastName: string) => {
     const doctor: Doctor = { id: id, name: name, lastName: lastName, visits: [] }
     const headers = { 'content-type': 'application/json'}
-    return this.http.put<Doctor>("http://localhost:8080/take/doctors/" + id, doctor, { headers: headers }).subscribe()
+    return this.http.put<Doctor>("http://localhost:8080/take/doctors/" + id, doctor, { headers: headers })
   }
 }

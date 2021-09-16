@@ -42,18 +42,20 @@ export class PatientComponent implements OnInit {
 
   onAdd = (lastNamee: string, namee: string) => {
     let patient: Patient = { id: 0, name: namee, lastName: lastNamee, visits: [] }
-    this.dataManagerService.addPatient(patient)
+    this.dataManagerService.addPatient(patient).subscribe(result => { console.log("Posted" + JSON.stringify(result));
     this.getAllPatientsAndRefresh()
+  })
+    
+    
   }
 
   onDelete = (id: string, lastName: string, name: string) => {
-    this.dataManagerService.deletePatient(+id)
-    this.getAllPatientsAndRefresh()
+    this.dataManagerService.deletePatient(+id).subscribe(()=>this.getAllPatientsAndRefresh())
+
   }
 
   onUpdate = (id: string, lastName: string, name: string) => {
-    this.dataManagerService.updatePatient(+id, name, lastName)
-    this.getAllPatientsAndRefresh()
+    this.dataManagerService.updatePatient(+id, name, lastName).subscribe(()=>this.getAllPatientsAndRefresh())
   }
 
   onRowClicked = (id: Number) => {
