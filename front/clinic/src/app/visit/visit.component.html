@@ -10,7 +10,16 @@
             <label for="patientId">Patient ID</label>
             <input class="form-control" id="patientId" type="text" formControlName="patientId" #addPatientId>
         </div>
-        <button class="btn btn-success text-white" (click)="onAdd(addDoctorId.value, addPatientId.value)">add</button>
+        <div class="form-group">
+            <label for="patientId">Date</label>
+            <input class="form-control" id="date" type="text" formControlName="date" #addDate>
+        </div>
+        <div class="form-group">
+            <label for="patientId">Disease Name</label>
+            <input class="form-control" id="diseaseName" type="text" formControlName="diseaseName" #addDiseaseName>
+        </div>
+
+        <button class="btn btn-success text-white" (click)="onAdd(addDoctorId.value, addPatientId.value, addDate.value, addDiseaseName.value)">add</button>
     </div>
     <div class="col-2">
         <div class="form-group">
@@ -26,11 +35,16 @@
         </div>
         <div class="form-group">
             <label for="date">Date</label>
-            <input [disabled]=true class="form-control" id="date" type="text" formControlName="date"
+            <input class="form-control" id="date" type="text" formControlName="date"
                 value={{currentVisit.date}} #updateDate>
         </div>
+        <div class="form-group">
+            <label for="diseaseName">Disease Name</label>
+            <input class="form-control" id="diseaseName" type="text" formControlName="diseaseName"
+                value={{currentVisit.diseaseName}} #updateDiseaseName>
+        </div>
         <button class="btn btn-info text-white"
-            (click)="onUpdate(updateId.value, updateDoctorId.value, updatePatientId.value, updateDate.value)">update</button>
+            (click)="onUpdate(updateId.value, updateDoctorId.value, updatePatientId.value, updateDate.value, updateDiseaseName.value)">update</button>
     </div>
     <div class="col-2">
         <div class="form-group">
@@ -51,8 +65,13 @@
             <input [disabled]=true class="form-control" id="date" type="text" formControlName="date"
                 value={{currentVisit.date}} #deleteDate>
         </div>
+        <div class="form-group">
+            <label for="date">Disease Name</label>
+            <input [disabled]=true class="form-control" id="date" type="text" formControlName="diseaseName"
+                value={{currentVisit.diseaseName}} #deleteDiseaseName>
+        </div>
         <button class="btn btn-danger text-white"
-            (click)="onDelete(deleteId.value, deleteDoctorId.value, deletePatientId.value, deleteDate.value)">Delete</button>
+            (click)="onDelete(deleteId.value, deleteDoctorId.value, deletePatientId.value, deleteDate.value, deleteDiseaseName.value)">Delete</button>
     </div>
     <div class="col-6">
         <div>
@@ -76,6 +95,11 @@
                 <ng-container matColumnDef="demo-date">
                     <th mat-header-cell *matHeaderCellDef> DATE </th>
                     <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="demo-diseaseName">
+                    <th mat-header-cell *matHeaderCellDef> DISEASE NAME </th>
+                    <td mat-cell *matCellDef="let element"> {{element.diseaseName}} </td>
                 </ng-container>
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row (click)="onRowClicked(row.id)" *matRowDef="let row; columns: displayedColumns;"></tr>

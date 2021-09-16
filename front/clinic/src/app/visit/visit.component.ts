@@ -9,10 +9,10 @@ import { DataManagerService, Visit } from '../data-manager.service';
 })
 export class VisitComponent {
 
-  displayedColumns: string[] = ['demo-id', 'demo-doctorId', 'demo-patientId', 'demo-date'];
+  displayedColumns: string[] = ['demo-id', 'demo-doctorId', 'demo-patientId', 'demo-date', 'demo-diseaseName'];
   title = 'clinic';
   dataSource: Visit[] = [];
-  currentVisit: Visit = { id: 0, doctorId: 0, patientId: 0, date: "" }
+  currentVisit: Visit = { id: 0, doctorId: 0, patientId: 0, date: "", diseaseName: "" }
 
   constructor(private http: HttpClient,
     private dataManagerService: DataManagerService) {
@@ -22,23 +22,27 @@ export class VisitComponent {
     })
   }
 
-  onAdd = (doctorId: string, patientId: string) => {
+  onAdd = (doctorId: string, patientId: string, date: string, diseaseName: string) => {
     console.log(doctorId)
     console.log(patientId)
+    console.log(date)
+    console.log(diseaseName)
   }
 
-  onDelete = (id: string, doctorId: string, patientId: string, date: string) => {
+  onDelete = (id: string, doctorId: string, patientId: string, date: string, diseaseName: string) => {
     console.log(patientId)
     console.log(doctorId)
     console.log(id)
     console.log(date)
+    console.log(diseaseName)
   }
 
-  onUpdate = (id: string, doctorId: string, patientId: string, date: string) => {
+  onUpdate = (id: string, doctorId: string, patientId: string, date: string, diseaseName: string) => {
     console.log(patientId)
     console.log(doctorId)
     console.log(id)
     console.log(date)
+    console.log(diseaseName)
   }
 
   onRowClicked = (id: Number) => {

@@ -21,6 +21,7 @@ export interface Visit {
   doctorId: number;
   patientId: number;
   date: string;
+  diseaseName: string;
 }
 
 @Injectable({
