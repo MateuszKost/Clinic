@@ -34,21 +34,52 @@ export class DataManagerService {
   tableDetectorEmiter: EventEmitter<any> = new EventEmitter();
   constructor(
     private http: HttpClient) {
-
     this.http.get("http://localhost:8080/take/h2", { responseType: 'json' }).subscribe((r) => { })
-
   }
+
+  // PATIENTS
 
   getAllPatients = () => {
     return this.http.get("http://localhost:8080/take/patients", { responseType: 'json' })
   }
 
+  addPatient = (patient: Patient) => {
+    const headers = { 'content-type': 'application/json'}
+    return this.http.post<Patient>("http://localhost:8080/take/patients", patient, { headers: headers }).subscribe(result => { console.log("Posted" + JSON.stringify(result));})
+    
+  }
+
+  deletePatient = (id: number) => {
+    const headers = { 'content-type': 'application/json'}
+    return this.http.delete("http://localhost:8080/take/patients/" + id, { headers: headers }).subscribe()
+  }
+
+  updatePatient = (id: number, name: string, lastName: string) => {
+    const patient: Patient = { id: id, name: name, lastName: lastName, visits: [] }
+    const headers = { 'content-type': 'application/json'}
+    return this.http.put<Patient>("http://localhost:8080/take/patients/" + id, patient, { headers: headers }).subscribe()
+  }
+
+  // DOCTORS
+
   getAllDoctors = () => {
     return this.http.get("http://localhost:8080/take/doctors", { responseType: 'json' })
   }
 
-  addPatient = (lastName: string, name: string) => {
-    console.log("here")
-    return this.http.post<any>("http://localhost:8080/take/patients",{ lastName: lastName, name: name } )
+  addDoctor = (doctor: Doctor) => {
+    const headers = { 'content-type': 'application/json'}
+    return this.http.post<Doctor>("http://localhost:8080/take/doctors", doctor, { headers: headers }).subscribe(result => { console.log("Posted" + JSON.stringify(result));})
+    
+  }
+
+  deleteDoctor = (id: number) => {
+    const headers = { 'content-type': 'application/json'}
+    return this.http.delete("http://localhost:8080/take/doctors/" + id, { headers: headers }).subscribe()
+  }
+
+  updateDoctor = (id: number, name: string, lastName: string) => {
+    const doctor: Doctor = { id: id, name: name, lastName: lastName, visits: [] }
+    const headers = { 'content-type': 'application/json'}
+    return this.http.put<Doctor>("http://localhost:8080/take/doctors/" + id, doctor, { headers: headers }).subscribe()
   }
 }

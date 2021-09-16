@@ -18,7 +18,7 @@ export class DoctorComponent implements OnInit {
     this.dataManagerService.tableDetectorEmiter.subscribe((currentTable)=>{
       this.dataManagerService.currentTable=currentTable
 
-      if(currentTable == "patient")
+      if(currentTable == "Doctor")
       this.currentDoctor = { id: 0, name: "", lastName: "", visits: [] }
     })
   }
@@ -31,21 +31,27 @@ export class DoctorComponent implements OnInit {
     })
   }
 
-  onAdd = (lastName: string, name: string) => {
-    console.log(lastName)
-    console.log(name)
+  getAllDoctorsAndRefresh = () => {
+    this.dataManagerService.getAllDoctors().subscribe((response)=>{
+      this.dataSource = <Doctor[]>response
+      this.ngOnInit()
+    })
+  }
+
+  onAdd = (lastNamee: string, namee: string) => {
+    let Doctor: Doctor = { id: 0, name: namee, lastName: lastNamee, visits: [] }
+    this.dataManagerService.addDoctor(Doctor)
+    this.getAllDoctorsAndRefresh()
   }
 
   onDelete = (id: string, lastName: string, name: string) => {
-    console.log(id)
-    console.log(lastName)
-    console.log(name)
+    this.dataManagerService.deleteDoctor(+id)
+    this.getAllDoctorsAndRefresh()
   }
 
   onUpdate = (id: string, lastName: string, name: string) => {
-    console.log(id)
-    console.log(lastName)
-    console.log(name)
+    this.dataManagerService.updateDoctor(+id, name, lastName)
+    this.getAllDoctorsAndRefresh()
   }
 
   onRowClicked = (id: Number) => {

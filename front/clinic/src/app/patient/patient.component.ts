@@ -33,29 +33,33 @@ export class PatientComponent implements OnInit {
       })
   }
 
-  onAdd = (lastName: string, name: string) => {
-
-    this.dataManagerService.addPatient(lastName, name)
-
+  getAllPatientsAndRefresh = () => {
     this.dataManagerService.getAllPatients().subscribe((response)=>{
-      this.dataSource = <any>response
+      this.dataSource = <Patient[]>response
+      this.ngOnInit()
     })
   }
 
+  onAdd = (lastNamee: string, namee: string) => {
+    let patient: Patient = { id: 0, name: namee, lastName: lastNamee, visits: [] }
+    this.dataManagerService.addPatient(patient)
+    this.getAllPatientsAndRefresh()
+  }
+
   onDelete = (id: string, lastName: string, name: string) => {
-  
+    this.dataManagerService.deletePatient(+id)
+    this.getAllPatientsAndRefresh()
   }
 
   onUpdate = (id: string, lastName: string, name: string) => {
-  
+    this.dataManagerService.updatePatient(+id, name, lastName)
+    this.getAllPatientsAndRefresh()
   }
 
   onRowClicked = (id: Number) => {
     this.dataSource.forEach((patient) => {
       if (patient.id == id)
         this.currentPatient = patient
-
-
     })
     this.dataManagerService.tableDetectorEmiter.emit("patient")
     this.dataManagerService.visitsEmiter.emit(this.currentPatient.visits)
