@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -32,7 +33,7 @@ public class Patient implements Serializable{
 	@Column(name = "lastName")
 	String lastName;	
 	
-	@OneToMany(mappedBy="patient", fetch=FetchType.EAGER) // EAGER wyciaga nam wszystko powiazane z pacjentem, jezeli uzyjemy LAZY to wyciaga nam tylko 
+	@OneToMany(mappedBy="patient", fetch=FetchType.EAGER, cascade = { CascadeType.MERGE, CascadeType.REMOVE }) // EAGER wyciaga nam wszystko powiazane z pacjentem, jezeli uzyjemy LAZY to wyciaga nam tylko 
 	//konkret i mozemy uzyc geterow, aczkowliek jezeli zamkniemy entity managera to dostaniemy exception, wiec wtedy by trzeba bylo ponownie otwieracamanagera
 	List<Visit> visits = new ArrayList<Visit>();	
 

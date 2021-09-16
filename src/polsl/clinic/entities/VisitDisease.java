@@ -1,5 +1,6 @@
 package polsl.clinic.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,7 +16,7 @@ public class VisitDisease {
 	@GeneratedValue
 	int id;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = { CascadeType.MERGE, CascadeType.REMOVE })
 	Visit visit;
 	
 	@ManyToOne(fetch=FetchType.LAZY)

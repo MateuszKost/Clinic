@@ -3,6 +3,7 @@ package polsl.clinic.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,7 +23,7 @@ public class Doctor {
 	
 	String lastName;	
 	
-	@OneToMany(mappedBy="doctor",fetch=FetchType.EAGER) // zeby nie bylo zewizyta u tego samego lekarza niee mebedzie z nim powizanaa, i beda 2 osobne encje
+	@OneToMany(mappedBy="doctor",fetch=FetchType.EAGER, cascade = { CascadeType.MERGE, CascadeType.REMOVE }) // zeby nie bylo zewizyta u tego samego lekarza niee mebedzie z nim powizanaa, i beda 2 osobne encje
 	List<Visit> visits = new ArrayList<Visit>();
 	
 	public Doctor(){}

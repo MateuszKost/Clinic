@@ -30,9 +30,15 @@ public class PatientsService {
 	}
 	
 	public void deleteById(int id){
+		System.out.println("before find");
 		Patient patient = findById(id);
+		System.out.println("before delete");
+		System.out.println("id from request " + id);
+		System.out.println(patient.getId());
 		if(patient != null){
+			System.out.println("in delete");
 			manager.remove(patient);
+			System.out.println("after delete");
 		}
 	}
 	

@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -26,13 +28,14 @@ public class Visit implements Serializable {
 	
 	String Date; // date time of visit
 	
-	@OneToMany(mappedBy="visit",fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="visit",fetch=FetchType.EAGER, cascade = { CascadeType.MERGE, CascadeType.REMOVE })
 	List<VisitDisease> visits = new ArrayList<VisitDisease>();
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	Doctor doctor;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "patient_id")
 	Patient patient;
 		
 	public Visit(){}
