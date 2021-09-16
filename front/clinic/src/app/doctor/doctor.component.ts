@@ -24,7 +24,11 @@ export class DoctorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dataSource = this.dataManagerService.doctors
+    this.dataManagerService.getAllDoctors()
+    .subscribe((response) => {
+      this.dataSource = <Doctor[]>response
+      console.log(this.dataSource)
+    })
   }
 
   onAdd = (lastName: string, name: string) => {

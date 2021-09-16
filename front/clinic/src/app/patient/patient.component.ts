@@ -17,33 +17,37 @@ export class PatientComponent implements OnInit {
 
   constructor(private http: HttpClient,
     private dataManagerService: DataManagerService) {
-      this.dataManagerService.tableDetectorEmiter.subscribe((currentTable)=>{
-        this.dataManagerService.currentTable=currentTable
+    this.dataManagerService.tableDetectorEmiter.subscribe((currentTable) => {
+      this.dataManagerService.currentTable = currentTable
 
-        if(currentTable == "doctor")
-          this.currentPatient = { id: 0, name: "", lastName: "", visits: [] }
-      })
+      if (currentTable == "doctor")
+        this.currentPatient = { id: 0, name: "", lastName: "", visits: [] }
+    })
   }
 
   ngOnInit(): void {
-    this.dataSource = this.dataManagerService.patients
+    this.dataManagerService.getAllPatients()
+      .subscribe((response) => {
+        this.dataSource = <Patient[]>response
+        console.log(this.dataSource)
+      })
   }
 
   onAdd = (lastName: string, name: string) => {
-    console.log(lastName)
-    console.log(name)
+
+    this.dataManagerService.addPatient(lastName, name)
+
+    this.dataManagerService.getAllPatients().subscribe((response)=>{
+      this.dataSource = <any>response
+    })
   }
 
   onDelete = (id: string, lastName: string, name: string) => {
-    console.log(id)
-    console.log(lastName)
-    console.log(name)
+  
   }
 
   onUpdate = (id: string, lastName: string, name: string) => {
-    console.log(id)
-    console.log(lastName)
-    console.log(name)
+  
   }
 
   onRowClicked = (id: Number) => {
@@ -51,7 +55,7 @@ export class PatientComponent implements OnInit {
       if (patient.id == id)
         this.currentPatient = patient
 
-       
+
     })
     this.dataManagerService.tableDetectorEmiter.emit("patient")
     this.dataManagerService.visitsEmiter.emit(this.currentPatient.visits)
