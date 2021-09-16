@@ -1,8 +1,6 @@
 package polsl.clinic.services;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -10,41 +8,17 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import polsl.clinic.entities.Visit;
-import polsl.clinic.entities.VisitDisease;
-import polsl.clinic.entities.Patient;
-import polsl.clinic.entities.Doctor;
 
 @Stateless
-public class VisitsService {
+public class VisitDiseaseService {
 
-	@PersistenceContext(name="visit")
+	@PersistenceContext(name="visitdisease")
 	EntityManager manager;
 		
 	@SuppressWarnings("unchecked")
 	public List<Visit> findAll(){
-		Query query = manager.createQuery("select v from Visit v");
+		Query query = manager.createQuery("select v from VisitDisease v");
 		return query.getResultList();
-	}
-		
-	public Visit findById(int id){
-		return manager.find(Visit.class, id);
-	}
-	
-	public void add(Visit visit){
-		manager.persist(visit);
-	}
-	
-	public void deleteById(int id){
-		Visit visit = findById(id);
-		if(visit != null){
-			manager.remove(visit);
-		}
-	}
-	
-	public void update(Visit visit){
-		if(manager.find(Visit.class, visit.getId()) != null){
-			manager.merge(visit);
-		}
 	}
 //		
 //	@SuppressWarnings("unchecked")
@@ -76,5 +50,4 @@ public class VisitsService {
 //				.collect(Collectors.toList());
 //	}
 	
-	//wyzej narazie nie, moze pozniej jak sie ogarnie front
 }

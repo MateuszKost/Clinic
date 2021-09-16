@@ -33,7 +33,7 @@ public class VisitsController {
 				.entity(visitsService.findAll())
 				.build();
 	}
-	
+		
 	@GET
 	@Path("/{id}")
 	public Response getById(@PathParam("id") int id){	
@@ -54,7 +54,7 @@ public class VisitsController {
 				.entity(visit)
 				.build();
 		
-	}
+	}	
 	
 	@POST
 	public Response addPatient(Visit visit){

@@ -26,6 +26,7 @@ public class VisitDiseaseInitalizerService {
 		for (Disease disease: diseases) {
 			for (Visit visit: visits) {
 				manager.persist(new VisitDisease(visit, disease));
+				//System.out.println("aaaaaa");
 			}
 		}
 		
