@@ -19,16 +19,39 @@ public class VisitInitializerService {
 	EntityManager manager;
 	
 	List<Visit> visits= new ArrayList<Visit>();
+	
+	private void createVisit(){
+		this.visits.add(new Visit("2021-08-08"));
+	}
+	
+	private void addPatientToVisit(Patient patient)
+	{
+		for(Visit visit : visits)
+		{
+			visit.setPatient(patient);
+		}
+	}
+	
+	private void addDoctorToVisit(Doctor doctor)
+	{
+		for(Visit visit : visits)
+		{
+			visit.setDoctor(doctor);
+		}
+	}
 		
 	@SuppressWarnings("unchecked")
 	public List<Visit> init(List<Patient> patients, List<Doctor> doctors) {
-		//this.createVisit();
+		this.createVisit();
 		for (Patient patient: patients) {
-			for (Doctor doctor: doctors) {
-				manager.persist(new Visit("2021-08-08", patient, doctor));			
-			}
+			this.addPatientToVisit(patient);
 		}
-			
+		for (Doctor doctor: doctors) {
+			this.addDoctorToVisit(doctor);
+		}
+		for(Visit visit: visits){
+			manager.persist(visit);
+		}		
 		Query query = manager.createQuery("SELECT v FROM Visit v");
 		this.visits = query.getResultList();
 		return this.visits;

@@ -10,7 +10,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import polsl.clinic.entities.Visit;
-import polsl.clinic.entities.VisitDisease;
 import polsl.clinic.entities.Patient;
 import polsl.clinic.entities.Doctor;
 
@@ -19,13 +18,13 @@ public class VisitsService {
 
 	@PersistenceContext(name="visit")
 	EntityManager manager;
-		
+	
 	@SuppressWarnings("unchecked")
 	public List<Visit> findAll(){
-		Query query = manager.createQuery("select v from Visit v");
+		Query query = manager.createQuery("select * from visit");
 		return query.getResultList();
 	}
-		
+	
 	public Visit findById(int id){
 		return manager.find(Visit.class, id);
 	}
@@ -46,35 +45,33 @@ public class VisitsService {
 			manager.merge(visit);
 		}
 	}
-//		
-//	@SuppressWarnings("unchecked")
-//	public List<Visit> findByPatientId(int patientId){
-//		
-//		if(manager.find(Patient.class, patientId) == null){
-//			return Collections.emptyList();
-//		}
-//		
-//		Query query = manager.createQuery("select v from Visits v where patientId = " + patientId);
-//		return query.getResultList();
-//	}
-//	
-//	@SuppressWarnings("unchecked")
-//	public List<Visit> findByDoctortId(int doctorId){
-//		
-//		if(manager.find(Doctor.class, doctorId) == null){
-//			return Collections.emptyList();
-//		}
-//		
-//		Query query = manager.createQuery("select * from visits where doctorId = " + doctorId);
-//		return query.getResultList();
-//	}
-//	
-//	public List<Visit> findAllByDate(String date){
-//		List<Visit> allVisits = findAll();
-//		return allVisits.stream()
-//				.filter(visit -> visit.getDate().equals(date))
-//				.collect(Collectors.toList());
-//	}
+		
+	@SuppressWarnings("unchecked")
+	public List<Visit> findByPatientId(int patientId){
+		
+		if(manager.find(Patient.class, patientId) == null){
+			return Collections.emptyList();
+		}
+		
+		Query query = manager.createQuery("select * from visits where patientId = " + patientId);
+		return query.getResultList();
+	}
 	
-	//wyzej narazie nie, moze pozniej jak sie ogarnie front
+	@SuppressWarnings("unchecked")
+	public List<Visit> findByDoctortId(int doctorId){
+		
+		if(manager.find(Doctor.class, doctorId) == null){
+			return Collections.emptyList();
+		}
+		
+		Query query = manager.createQuery("select * from visits where doctorId = " + doctorId);
+		return query.getResultList();
+	}
+	
+	public List<Visit> findAllByDate(String date){
+		List<Visit> allVisits = findAll();
+		return allVisits.stream()
+				.filter(visit -> visit.getDate().equals(date))
+				.collect(Collectors.toList());
+	}
 }

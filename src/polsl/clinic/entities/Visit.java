@@ -4,12 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -24,7 +22,6 @@ public class Visit implements Serializable {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "visit_id")
 	int id;
 	
 	String Date; // date time of visit
@@ -33,30 +30,29 @@ public class Visit implements Serializable {
 	List<VisitDisease> visits = new ArrayList<VisitDisease>();
 	
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name = "doctor_id")
 	Doctor doctor;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name = "patient_id")
 	Patient patient;
 		
 	public Visit(){}
 	
-	public Visit(String _date, Patient _patient, Doctor _doctor){
+	public Visit(String _date){
 		this.Date = _date;
-		this.doctor = _doctor;
-		this.patient = _patient;
 	}
 	
 	public int getId() {
 		return id;
 	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 	public String getDate() {
 		return Date;
 	}
+	
 	public void setDate(String date) {
 		Date = date;
 	}
@@ -65,11 +61,12 @@ public class Visit implements Serializable {
 	public List<VisitDisease> getVisits() {
 		return visits;
 	}
+	
 	public void setVisits(List<VisitDisease> visits) {
 		this.visits = visits;
 	}
 	
-	@JsonBackReference(value = "doctor-visit")
+	@JsonBackReference(value = "doctor-visits")
 	//@JsonIgnore
 	public Doctor getDoctor() {
 		return doctor;
@@ -78,11 +75,12 @@ public class Visit implements Serializable {
 		this.doctor = doctor;
 	}
 	
-	@JsonBackReference(value = "patient-visit")
+	@JsonBackReference(value = "patient-visits")
 	//@JsonIgnore
 	public Patient getPatient() {
 		return patient;
 	}
+	
 	public void setPatient(Patient patient) {
 		this.patient = patient;
 	}
