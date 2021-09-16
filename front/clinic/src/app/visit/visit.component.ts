@@ -48,6 +48,7 @@ export class VisitComponent {
   onRowClicked = (id: Number) => {
     this.dataSource.forEach((visit) => {
       if (visit.visitId == id)
+      console.log(visit)
         this.currentVisit = visit
     })
   }
