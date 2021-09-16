@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import polsl.clinic.entities.Visit;
+import polsl.clinic.entities.VisitDisease;
 
 @Stateless
 public class VisitDiseaseService {
@@ -16,7 +17,7 @@ public class VisitDiseaseService {
 	EntityManager manager;
 		
 	@SuppressWarnings("unchecked")
-	public List<Visit> findAll(){
+	public List<VisitDisease> findAll(){
 		Query query = manager.createQuery("select v from VisitDisease v");
 		return query.getResultList();
 	}

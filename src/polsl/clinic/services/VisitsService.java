@@ -1,5 +1,6 @@
 package polsl.clinic.services;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import polsl.clinic.entities.Visit;
+import polsl.clinic.entities.VisitFront;
 import polsl.clinic.entities.Patient;
 import polsl.clinic.entities.Doctor;
 
@@ -22,6 +24,17 @@ public class VisitsService {
     @SuppressWarnings("unchecked")
     public List<Visit> findAll(){
         Query query = manager.createQuery("select v from Visit v");
+        
+//        List<Visit> list = query.getResultList();
+//        
+//        List<VisitFront> frontList = new ArrayList<VisitFront>();
+//        
+//        for(Visit visit : list)
+//        {
+//        	
+//        }
+        
+// narazie nie dziala, ale nie wiem czy bedzie potrzebne         
         return query.getResultList();
     }
 
