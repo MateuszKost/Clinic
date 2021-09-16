@@ -22,29 +22,6 @@ export class VisitComponent {
     })
   }
 
-  onAdd = (doctorId: string, patientId: string, date: string, diseaseName: string) => {
-    console.log(doctorId)
-    console.log(patientId)
-    console.log(date)
-    console.log(diseaseName)
-  }
-
-  onDelete = (id: string, doctorId: string, patientId: string, date: string, diseaseName: string) => {
-    console.log(patientId)
-    console.log(doctorId)
-    console.log(id)
-    console.log(date)
-    console.log(diseaseName)
-  }
-
-  onUpdate = (id: string, doctorId: string, patientId: string, date: string, diseaseName: string) => {
-    console.log(patientId)
-    console.log(doctorId)
-    console.log(id)
-    console.log(date)
-    console.log(diseaseName)
-  }
-
   onRowClicked = (id: Number) => {
     this.dataSource.forEach((visit) => {
       if (visit.visitId == id)

@@ -18,8 +18,8 @@ export class DoctorComponent implements OnInit {
     this.dataManagerService.tableDetectorEmiter.subscribe((currentTable)=>{
       this.dataManagerService.currentTable=currentTable
 
-      if(currentTable == "Doctor")
-      this.currentDoctor = { id: 0, name: "", lastName: "", visits: [] }
+      if(currentTable == "patient")
+        this.currentDoctor = { id: 0, name: "", lastName: "", visits: [] }
     })
   }
 
