@@ -16,23 +16,23 @@ import polsl.clinic.entities.Disease;
 public class VisitDiseaseInitalizerService {
 
 	@PersistenceContext(name="visitdisease") 
-	EntityManager manager;
-	
-	List<VisitDisease> visitDiseases = new ArrayList<VisitDisease>();			
-	
-	
-	@SuppressWarnings("unchecked")
-	public List<VisitDisease> init(List<Disease> diseases, List<Visit> visits) {
-		for (Disease disease: diseases) {
-			for (Visit visit: visits) {
-				manager.persist(new VisitDisease(visit, disease));
-				//System.out.println("aaaaaa");
-			}
-		}
-		
-		Query query = manager.createQuery("SELECT v FROM VisitDisease v");
-		this.visitDiseases = query.getResultList();
-		return this.visitDiseases;
-	}
+    EntityManager manager;
+
+    List<VisitDisease> visitDiseases = new ArrayList<VisitDisease>();
+
+
+    @SuppressWarnings("unchecked")
+    public List<VisitDisease> init(List<Disease> diseases, List<Visit> visits) {
+        for (Disease disease: diseases) {
+            for (Visit visit: visits) {
+                manager.persist(new VisitDisease(visit, disease));
+                //System.out.println("aaaaaa");
+            }
+        }
+
+        Query query = manager.createQuery("SELECT v FROM VisitDisease v");
+        this.visitDiseases = query.getResultList();
+        return this.visitDiseases;
+    }
 	
 }

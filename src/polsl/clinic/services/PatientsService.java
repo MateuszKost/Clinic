@@ -12,7 +12,7 @@ import polsl.clinic.entities.Patient;
 @Stateless
 public class PatientsService {
 
-	@PersistenceContext(name="patient")
+	@PersistenceContext(name = "patient")
 	EntityManager manager;
 	
 	@SuppressWarnings("unchecked")
@@ -40,7 +40,6 @@ public class PatientsService {
 		if(manager.find(Patient.class, patient.getId()) != null){
 			manager.merge(patient);
 		}
-		
 	}
 	
 }

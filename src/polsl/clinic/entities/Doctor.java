@@ -3,7 +3,6 @@ package polsl.clinic.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,14 +16,11 @@ public class Doctor {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "doctor_id")
 	int id;
 	
-	@Column(name = "doctor_name")
 	String name;
 	
-	@Column(name = "doctor_lastName")
-	String lastName;		
+	String lastName;	
 	
 	@OneToMany(mappedBy="doctor",fetch=FetchType.EAGER) // zeby nie bylo zewizyta u tego samego lekarza niee mebedzie z nim powizanaa, i beda 2 osobne encje
 	List<Visit> visits = new ArrayList<Visit>();
@@ -55,7 +51,7 @@ public class Doctor {
 		this.lastName = lastName;
 	}
 	
-	@JsonManagedReference(value = "doctor-visit")
+	@JsonManagedReference(value = "doctor-visits")
 	public List<Visit> getVisits() {
 		return visits;
 	}

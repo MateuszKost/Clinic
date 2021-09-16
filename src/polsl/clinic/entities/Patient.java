@@ -24,13 +24,12 @@ public class Patient implements Serializable{
 	
 	@Id
 	@GeneratedValue
-	@Column(name = "patient_id")
 	int id;
 	
-	@Column(name = "patient_name")
+	@Column(name = "name")
 	String name;
 	
-	@Column(name = "patient_lastName")
+	@Column(name = "lastName")
 	String lastName;	
 	
 	@OneToMany(mappedBy="patient", fetch=FetchType.EAGER) // EAGER wyciaga nam wszystko powiazane z pacjentem, jezeli uzyjemy LAZY to wyciaga nam tylko 
@@ -63,7 +62,7 @@ public class Patient implements Serializable{
 		this.lastName = lastName;
 	}
 	
-	@JsonManagedReference(value = "patient-visit")
+	@JsonManagedReference(value = "patient-visits")
 	public List<Visit> getVisits() {
 		return visits;
 	}
