@@ -67,6 +67,7 @@ public class PatientsService {
 				}
 			}
 			PatientFront frontPatient = new PatientFront();
+			frontPatient.setId(patient.getId());
 			frontPatient.setName(patient.getName());
 			frontPatient.setLastName(patient.getLastName());
 			frontPatient.setVisits(visitsFront);

@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 public class PatientFront {
 
+	int id;
+	
 	String name;
 	
 	String lastName;
@@ -20,6 +22,12 @@ public class PatientFront {
 		this.lastName = lastName;
 	}
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}	
 	public String getName() {
 		return name;
 	}
