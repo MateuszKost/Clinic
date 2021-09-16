@@ -4,6 +4,7 @@ import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.OPTIONS;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -23,11 +24,20 @@ public class PatientsController {
 	@EJB
 	private PatientsService patientsService;
 	
+	@OPTIONS
+	public Response options() {
+	    return Response.ok("")
+	            .header("Access-Control-Allow-Origin", "")
+	            .header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+	            .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS, HEAD")
+	            .build();
+	}
+	
 	@GET
 	public Response getAll() {				
 		
 		return Response
-				.status(200)
+				.ok()
 				.header("Access-Control-Allow-Origin", "*")
 				.type(MediaType.APPLICATION_JSON)
 				.entity(patientsService.findAll())
@@ -61,9 +71,10 @@ public class PatientsController {
 		
 		patientsService.add(patient);
 		return Response
-				.status(200)
+				.ok()
 				.header("Access-Control-Allow-Origin", "*")
 				.type(MediaType.APPLICATION_JSON)
+				.entity(patient)
 				.build();
 	}
 	
@@ -80,7 +91,7 @@ public class PatientsController {
 	}
 	
 	@PUT
-	@Path("/patient")
+	@Path("/{id}")
 	public Response updatePatient(@PathParam("id") int id, Patient patient){
 		patient.setId(id);
 		patientsService.update(patient);

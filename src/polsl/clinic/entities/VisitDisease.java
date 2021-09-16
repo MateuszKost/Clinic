@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -17,15 +16,13 @@ public class VisitDisease {
 	int id;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "visit_id")
 	Visit visit;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name = "disease_id")
 	Disease disease;
 	
 	public VisitDisease(){}
-	
+
 	public VisitDisease(Visit _visit, Disease _disease){
 		this.disease = _disease;
 		this.visit = _visit;
@@ -37,17 +34,20 @@ public class VisitDisease {
 	public void setId(int id) {
 		this.id = id;
 	}
-	@JsonBackReference(value = "visit-visitdisease")
+	
+	@JsonBackReference(value = "disease-visitdisease")
 	public Visit getVisit() {
 		return visit;
 	}
 	public void setVisit(Visit visit) {
 		this.visit = visit;
 	}
-	@JsonBackReference(value = "disease-visitdisease")
+	
+	@JsonBackReference(value = "visit-visitdisease")
 	public Disease getDisease() {
 		return disease;
 	}
+	
 	public void setDisease(Disease disease) {
 		this.disease = disease;
 	}	
