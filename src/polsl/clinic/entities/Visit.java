@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -22,6 +24,7 @@ public class Visit implements Serializable {
 
 	@Id
 	@GeneratedValue
+	@Column(name = "visit_id")
 	int id;
 	
 	String Date; // date time of visit
@@ -30,9 +33,11 @@ public class Visit implements Serializable {
 	List<VisitDisease> visits = new ArrayList<VisitDisease>();
 	
 	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "doctor_id")
 	Doctor doctor;
 	
 	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "patient_id")
 	Patient patient;
 		
 	public Visit(){}
@@ -64,8 +69,8 @@ public class Visit implements Serializable {
 		this.visits = visits;
 	}
 	
-	@JsonManagedReference(value = "doctor-visit")
-	@JsonIgnore
+	@JsonBackReference(value = "doctor-visit")
+	//@JsonIgnore
 	public Doctor getDoctor() {
 		return doctor;
 	}
@@ -74,7 +79,7 @@ public class Visit implements Serializable {
 	}
 	
 	@JsonBackReference(value = "patient-visit")
-	@JsonIgnore
+	//@JsonIgnore
 	public Patient getPatient() {
 		return patient;
 	}
