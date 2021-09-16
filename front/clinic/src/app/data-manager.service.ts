@@ -17,7 +17,7 @@ export interface Doctor {
 }
 
 export interface Visit {
-  id: number;
+  visitId: number;
   doctorId: number;
   patientId: number;
   date: string;

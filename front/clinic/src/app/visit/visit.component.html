@@ -23,7 +23,7 @@
     </div>
     <div class="col-2">
         <div class="form-group">
-            <input hidden class="form-control" id="id" type="text" formControlName="id" value={{currentVisit.id}} #updateId>
+            <input hidden class="form-control" id="id" type="text" formControlName="id" value={{currentVisit.visitId}} #updateId>
         </div>
         <div class="form-group">
             <label for="doctorId">Doctor ID</label>
@@ -48,7 +48,7 @@
     </div>
     <div class="col-2">
         <div class="form-group">
-            <input hidden class="form-control" id="id" type="text" formControlName="id" value={{currentVisit.id}} #deleteId>
+            <input hidden class="form-control" id="id" type="text" formControlName="id" value={{currentVisit.visitId}} #deleteId>
         </div>
         <div class="form-group">
             <label for="doctorId">Doctor ID</label>
@@ -79,7 +79,7 @@
 
                 <ng-container matColumnDef="demo-id">
                     <th mat-header-cell *matHeaderCellDef> ID </th>
-                    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                    <td mat-cell *matCellDef="let element"> {{element.visitId}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="demo-doctorId">

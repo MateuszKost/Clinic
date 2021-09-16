@@ -12,7 +12,7 @@ export class VisitComponent {
   displayedColumns: string[] = ['demo-id', 'demo-doctorId', 'demo-patientId', 'demo-date', 'demo-diseaseName'];
   title = 'clinic';
   dataSource: Visit[] = [];
-  currentVisit: Visit = { id: 0, doctorId: 0, patientId: 0, date: "", diseaseName: "" }
+  currentVisit: Visit = { visitId: 0, doctorId: 0, patientId: 0, date: "", diseaseName: "" }
 
   constructor(private http: HttpClient,
     private dataManagerService: DataManagerService) {
@@ -47,7 +47,7 @@ export class VisitComponent {
 
   onRowClicked = (id: Number) => {
     this.dataSource.forEach((visit) => {
-      if (visit.id == id)
+      if (visit.visitId == id)
         this.currentVisit = visit
     })
   }

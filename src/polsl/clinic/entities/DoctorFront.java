@@ -5,6 +5,8 @@ import java.util.List;
 
 public class DoctorFront {
 
+	int id;
+	
 	String name;
 	
 	String lastName;
@@ -19,6 +21,12 @@ public class DoctorFront {
 		this.lastName = lastName;
 	}
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}
